@@ -1,6 +1,6 @@
 from guizero import App, Box, Text, CheckBox, Combo, PushButton, TextBox, Drawing
 
-app = App(bg="green")
+app = App(bg="green", width=1134, height=565)
 
 top_box = Box(app, layout="grid")
 schedule_button = PushButton(top_box, text="schedule", grid=[0, 0])
@@ -39,9 +39,9 @@ activity_3_duration = Text(activity_3_box, text="0h:30m", grid=[0, 1])
 activity_3_grab_area = Box(activity_3_box, grid=[0, 2])
 activity_3_delete = Text(activity_3_box, text="delete", grid=[1, 2])
 
-bottom_box = Box(app, align="bottom", width="fill", layout="grid")
+bottom_box = Box(app, align="bottom", width="fill", layout="auto")
 bottom_box.bg = "Blue2"
 schedule_stats = Text(bottom_box, text="your schedule is 3h:15m long with 3 separate activities", grid=[0, 0])
 timer_checkbox = CheckBox(bottom_box, text="timer", grid=[1, 0])
-start_button = PushButton(bottom_box, text="start", grid=[2, 0])
+start_button = PushButton(bottom_box, text="start", grid=[2, 0], align="right")
 app.display()
