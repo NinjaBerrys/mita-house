@@ -21,6 +21,4 @@ sign_in_button.grid(row=0, column=3)
 content_frame = Frame(root)
 content_frame.grid(row=1, column=0)
 
-
-
 root.mainloop()

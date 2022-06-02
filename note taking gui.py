@@ -18,7 +18,7 @@ note_box = Box(content_box, width=646, height=325, grid=[2, 0], border=True)
 stats_box = Box(app)
 
 folder_1_box = Box(folder_box, grid=[0, 0], width=200, height=62)
-folder_1_text=Text(folder_1_box,text="folder 1",)
+folder_1_text = Text(folder_1_box, text="folder 1", size=50)
 file_1_box = Box(file_box, grid=[0, 0], width=150, height=62)
 note_taking_box = TextBox(note_box, text="Born in a World of Strife", width=646)
 statistics_box = Text(stats_box, text="words = 0\ntime working : 4h:30m")
