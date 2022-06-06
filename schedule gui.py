@@ -44,4 +44,7 @@ bottom_box.bg = "Blue2"
 schedule_stats = Text(bottom_box, text="your schedule is 3h:15m long with 3 separate activities", grid=[0, 0])
 timer_checkbox = CheckBox(bottom_box, text="timer", grid=[1, 0])
 start_button = PushButton(bottom_box, text="start", grid=[2, 0], align="right")
+
+schedule_list = []
+
 app.display()
