@@ -1,25 +1,29 @@
 from guizero import App, Box, Text, CheckBox, Combo, PushButton, TextBox, Drawing
+import re
 
 schedule_list = []
 
 
 def set_activity():
     activity = input_activity_box.value
-    print(activity)
     return activity
 
 
 def create_activity():
     subject = set_activity()
-    time = set_duration()
-    activity = [subject, time]
+    time_values = duration_to_time()
+    activity = [subject]
+    activity.extend(time_values)
     schedule_list.append(activity)
     print(schedule_list)
 
 
-def duration_to_time(duration):
-    duration = duration.split(":")
-    duration
+def duration_to_time():
+    duration = duration_box.value.split(":")
+    duration_in_hours = re.sub("\D", "", duration[0])
+    duration_in_minutes = re.sub("\D", "", duration[1])
+    time_values = [duration_in_hours, duration_in_minutes]
+    return time_values
 
 
 app = App(bg="grey")
