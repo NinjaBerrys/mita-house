@@ -2,6 +2,7 @@ from guizero import App, Box, Text, CheckBox, Combo, PushButton, TextBox, Drawin
 import re
 
 schedule_list = []
+x = 0
 
 
 def set_activity():
@@ -10,19 +11,14 @@ def set_activity():
 
 
 def insert_activity():
-    x = 0
     subject = set_activity()
     duration = duration_box.value
     time_values = duration_to_time()
     activity = [subject]
     activity.extend(time_values)
     schedule_list.append(activity)
-    activity_box = Box(schedule_box, layout="grid", grid=[x, 0])
-    activity_name = Text(activity_box, text=subject, grid=[0, 0])
-    activity_duration = Text(activity_box, text=duration, grid=[0, 1])
-    # activity_grab_area = Box(activity_box, grid=[0, 2])
-    activity_delete = PushButton(activity_box, text="delete", grid=[1, 2])
-    x += 1
+    for idx, item in enumerate(schedule_list):
+        print(schedule_list)
 
 
 def duration_to_time():
