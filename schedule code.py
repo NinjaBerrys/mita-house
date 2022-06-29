@@ -12,7 +12,6 @@ def set_activity():
 
 def insert_activity():
     subject = set_activity()
-    duration = duration_box.value
     time_values = duration_to_time()
     activity = [subject]
     activity.extend(time_values)
