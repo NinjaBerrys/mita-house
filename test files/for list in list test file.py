@@ -1,3 +1,3 @@
-lists = [[], [], [], [], [], [1, 2]]
-for idx, x in enumerate(lists):
-    print(idx, x)
+lists = [['bruab', '5', '15'], ['bruab', '0', '15'], ['bruab', '0', '45'], ['bruab', '0', '15'], "1", "nina leven"]
+for index, x in enumerate(lists):
+    print(index, x)
