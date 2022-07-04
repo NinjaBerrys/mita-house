@@ -19,10 +19,11 @@ def insert_activity():
     print(schedule_list)
     for index, x in enumerate(schedule_list):
         activity_1_box = Box(schedule_box, layout="grid", grid=[index, 0])
-        # activity_1_name = Text(activity_1_box, text=x[0], grid=[0, 0])
-        # activity_1_duration = Text(activity_1_box, text="1h:15m", grid=[0, 1])
-        # activity_1_grab_area = Box(activity_1_box, grid=[0, 2])
-        # activity_1_delete = Text(activity_1_box, text="delete", grid=[1, 2])
+        activity_1_name = Text(activity_1_box, text=x[0], grid=[0, 0])
+        activity_1_duration = Text(activity_1_box, text="{}h:{}m".format(x[1],x[2]), grid=[0, 1])
+        activity_1_grab_area = Box(activity_1_box, grid=[0, 2])
+        activity_1_delete = Text(activity_1_box, text="delete", grid=[1, 2])
+        app.update()
 
 
 def duration_to_time():
