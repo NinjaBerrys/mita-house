@@ -1,8 +1,14 @@
-from guizero import App, Box, Text, CheckBox, Combo, PushButton, TextBox, Drawing
+from guizero import App, Box, Text, CheckBox, Combo, PushButton, TextBox, Drawing, Window
 import re
+import os
+import sys
 
 schedule_list = []
 x = 0
+
+
+def reset():
+    os.execv(sys.executable, ['python'] + sys.argv)
 
 
 def set_activity():
@@ -20,9 +26,9 @@ def insert_activity():
     for index, x in enumerate(schedule_list):
         activity_1_box = Box(schedule_box, layout="grid", grid=[index, 0])
         activity_1_name = Text(activity_1_box, text=x[0], grid=[0, 0])
-        activity_1_duration = Text(activity_1_box, text="{}h:{}m".format(x[1],x[2]), grid=[0, 1])
+        activity_1_duration = Text(activity_1_box, text="{}h:{}m".format(x[1], x[2]), grid=[0, 1])
         activity_1_grab_area = Box(activity_1_box, grid=[0, 2])
-        activity_1_delete = Text(activity_1_box, text="delete", grid=[1, 2])
+        activity_1_delete = PushButton(activity_1_box, text="delete all", grid=[1, 2], command=reset)
         app.update()
 
 
