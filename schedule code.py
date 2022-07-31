@@ -12,24 +12,38 @@ def set_activity():
 
 
 def insert_activity():
+    def save_schedule_list():
+        with open("save_file", "w") as save_file:
+            for task in schedule_list:
+                save_file.write("%s\n" % task)
+            print("done")
+
     def reset():
-        schedule_list.remove(x)
+        schedule_list.remove(event)
         activity_1_box.destroy()
         print(schedule_list)
         app.update()
+
     subject = set_activity()
     time_values = duration_to_time()
     activity = [subject]
     activity.extend(time_values)
     schedule_list.append(activity)
     print(schedule_list)
-    for index, x in enumerate(schedule_list):
+    # for activities in schedule_list:
+    #     hours = activities[1]
+    PushButton(stats_box, text="save", command=save_schedule_list)
+    for index, event in enumerate(schedule_list):
         activity_1_box = Box(schedule_box, layout="grid", grid=[index, 0])
-        Text(activity_1_box, text=x[0], grid=[0, 0])
-        Text(activity_1_box, text="{}h:{}m".format(x[1], x[2]), grid=[0, 1])
+        Text(activity_1_box, text=event[0], grid=[0, 0])
+        Text(activity_1_box, text="{}h:{}m".format(event[1], event[2]), grid=[0, 1])
         Box(activity_1_box, grid=[0, 2])
         PushButton(activity_1_box, text="delete", grid=[1, 2], command=reset)
+
+        stats_text.value = "your schedule is {}h:{}m long with {} separate activities".format(event[1], event[2],
+                                                                                              len(schedule_list))
         app.update()
+    return schedule_list
 
 
 def duration_to_time():
@@ -38,8 +52,6 @@ def duration_to_time():
     duration_in_minutes = re.sub("\D", "", duration[1])
     time_values = [duration_in_hours, duration_in_minutes]
     return time_values
-
-
 
 
 app = App(bg="grey")
@@ -52,5 +64,9 @@ insert_button = PushButton(content_box, text="insert", grid=[2, 0], command=inse
 
 schedule_box = Box(app, layout="grid", )
 schedule_box.bg = "red"
+
+stats_box = Box(app)
+stats_box.bg = "green"
+stats_text = Text(stats_box, text="your schedule is 0h:0m long with 0 activities")
 
 app.display()
