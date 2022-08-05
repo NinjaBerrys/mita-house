@@ -1,7 +1,8 @@
 import re
 
-from guizero import App, Box, Text, Combo, PushButton, TextBox
+from guizero import *
 
+import_list = []
 schedule_list = []
 x = 0
 
@@ -54,6 +55,24 @@ def duration_to_time():
     return time_values
 
 
+def load_schedule_file():
+    with open("load_file", "r") as load_file:
+        for line in load_file:
+            e = line[:-1]
+            import_list.append(e)
+            print(import_list)
+
+    for index, event in enumerate(import_list):
+        activity_1_box = Box(import_list, layout="grid", grid=[index, 0])
+        Text(activity_1_box, text=event[0], grid=[0, 0])
+        Text(activity_1_box, text="{}h:{}m".format(event[1], event[2]), grid=[0, 1])
+        Box(activity_1_box, grid=[0, 2])
+
+        stats_text.value = "your schedule is {}h:{}m long with {} separate activities".format(event[1], event[2],
+                                                                                              len(import_list))
+        app.update()
+
+
 app = App(bg="grey")
 content_box = Box(app, layout="grid", align="top", width='fill')
 input_activity_box = TextBox(content_box, text="", grid=[0, 0], command=set_activity)
@@ -61,6 +80,7 @@ duration_options = ["0h:15m", "0h:30m", "0h:45m", "1h:00m", "1h:15m", "1h:30m", 
                     "2h"":30m", "2h:45m", "3h:00m"]
 duration_box = Combo(content_box, options=duration_options, grid=[1, 0], command=duration_to_time)
 insert_button = PushButton(content_box, text="insert", grid=[2, 0], command=insert_activity)
+load_button = PushButton(content_box, text='load', grid=[3, 0],command=load_schedule_file)
 
 schedule_box = Box(app, layout="grid", )
 schedule_box.bg = "red"
