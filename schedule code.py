@@ -58,8 +58,10 @@ def duration_to_time():
 def load_schedule_file():
     with open("load_file", "r") as load_file:
         for line in load_file:
-            e = line[:-1]
-            import_list.append(e)
+            pursuit = line[:-1]
+            pursuit.replace('"', "")
+            list(pursuit)
+            import_list.append(pursuit)
             print(import_list)
 
     for index, event in enumerate(import_list):
@@ -80,7 +82,7 @@ duration_options = ["0h:15m", "0h:30m", "0h:45m", "1h:00m", "1h:15m", "1h:30m", 
                     "2h"":30m", "2h:45m", "3h:00m"]
 duration_box = Combo(content_box, options=duration_options, grid=[1, 0], command=duration_to_time)
 insert_button = PushButton(content_box, text="insert", grid=[2, 0], command=insert_activity)
-load_button = PushButton(content_box, text='load', grid=[3, 0],command=load_schedule_file)
+load_button = PushButton(content_box, text='load', grid=[3, 0], command=load_schedule_file)
 
 schedule_box = Box(app, layout="grid", )
 schedule_box.bg = "red"
