@@ -1,9 +1,9 @@
-import re
-
-from guizero import *
+import re  # imports re module
+from guizero import *  # imports guizero
 
 import_list = []
 schedule_list = []
+y = []
 x = 0
 
 
@@ -14,7 +14,7 @@ def set_activity():
 
 def insert_activity():
     def save_schedule_list():
-        with open("save_file", "w") as save_file:
+        with open("load_file", "w") as save_file:
             for task in schedule_list:
                 save_file.write("%s\n" % task)
             print("done")
@@ -56,22 +56,30 @@ def duration_to_time():
 
 
 def load_schedule_file():
+    def save_schedule_list():
+        with open("save_file", "w") as save_file:
+            for task in schedule_list:
+                save_file.write("%s\n" % task)
+            print("done")
+
     with open("load_file", "r") as load_file:
         for line in load_file:
             pursuit = line[:-1]
             pursuit.replace('"', "")
             list(pursuit)
             import_list.append(pursuit)
-            print(import_list)
-
-    for index, event in enumerate(import_list):
-        activity_1_box = Box(import_list, layout="grid", grid=[index, 0])
+        for i in import_list:
+            y.append(eval(i))
+        print(y)
+    PushButton(stats_box, text="save", command=save_schedule_list)
+    for index, event in enumerate(y):
+        activity_1_box = Box(schedule_box, layout="grid", grid=[index, 0])
         Text(activity_1_box, text=event[0], grid=[0, 0])
         Text(activity_1_box, text="{}h:{}m".format(event[1], event[2]), grid=[0, 1])
         Box(activity_1_box, grid=[0, 2])
 
         stats_text.value = "your schedule is {}h:{}m long with {} separate activities".format(event[1], event[2],
-                                                                                              len(import_list))
+                                                                                              len(y))
         app.update()
 
 
